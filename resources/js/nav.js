@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             trigger.setAttribute('aria-expanded', 'true');
             drawer.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden'; // Prevents scrolling background content
-            
+
             // Set focus inside the drawer on open (delay slightly for transition)
             setTimeout(() => {
                 const firstFocusable = drawer.querySelector('a, button');
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             trigger.setAttribute('aria-expanded', 'false');
             drawer.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = ''; // Restores body scrolling
-            
+
             // Return focus to the trigger button
             trigger.focus();
         }
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Drawer Dropdowns Toggle
     dropdowns.forEach((dropdown) => {
         const dropTrigger = dropdown.querySelector('[data-drawer-dropdown-trigger]');
-        
+
         if (!dropTrigger) return;
 
         dropTrigger.addEventListener('click', (e) => {

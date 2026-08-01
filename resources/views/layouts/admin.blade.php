@@ -11,7 +11,7 @@
     <div class="tw-admin">
         <aside class="tw-sidebar">
             <a href="{{ route('admin.dashboard') }}" class="tw-brand">
-                <span class="tw-logo-wrap"><img src="{{ asset('branding/tanweer-logo.svg') }}" alt="شعار تنوير" class="tw-logo"></span>
+                <span class="tw-logo-wrap"><img src="{{ asset('branding/Logo_Icon_Option_01.svg') }}" alt="شعار تنوير" class="tw-logo"></span>
                 <div>
                     <h1 class="tw-brand-title">تنوير</h1>
                     <span>لوحة التحكم</span>

@@ -1698,6 +1698,545 @@ table.tw-table {
     .tw-featured-side .tw-card-media {
         width: 90px;
     }
+}
 
+/* =========================================================
+   ANIMATIONS & TRANSITIONS
+   ========================================================= */
 
+/* Fade in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Animated sections */
+.tw-animate-fade-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.tw-animate-fade-in-delay-1 {
+    animation: fadeInUp 0.6s ease-out 0.1s forwards;
+    opacity: 0;
+}
+
+.tw-animate-fade-in-delay-2 {
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.tw-animate-fade-in-delay-3 {
+    animation: fadeInUp 0.6s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+/* Staggered card animations */
+.tw-card {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.tw-grid .tw-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.tw-grid .tw-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.tw-grid .tw-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.tw-grid .tw-card:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.tw-grid .tw-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.tw-grid .tw-card:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+/* Enhanced card hover effects */
+.tw-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.tw-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--tw-green), var(--tw-green-light));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.tw-card:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.tw-card-media {
+    position: relative;
+}
+
+.tw-card-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(45, 106, 79, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tw-card:hover .tw-card-media::after {
+    opacity: 1;
+}
+
+/* Button ripple effect */
+.tw-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.tw-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+
+.tw-btn:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Smooth scroll behavior enhancement */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading skeleton */
+.tw-skeleton {
+    background: linear-gradient(90deg, var(--tw-beige-pale) 25%, var(--tw-beige) 50%, var(--tw-beige-pale) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Image lazy loading fade */
+img[loading="lazy"] {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+/* Enhanced header animations */
+.tw-header {
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.tw-header.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Widget animations */
+.tw-widget {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.tw-sidebar .tw-widget:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.tw-sidebar .tw-widget:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* Section title animation */
+.tw-section-title {
+    animation: slideInRight 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+/* Play icon enhanced animation */
+.tw-play-icon {
+    animation: pulse 2s infinite;
+}
+
+.tw-card:hover .tw-play-icon {
+    animation: none;
+}
+
+/* Footer enhancement */
+.tw-footer {
+    position: relative;
+    overflow: hidden;
+}
+
+.tw-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--tw-green), transparent);
+}
+
+/* Form input focus animation */
+.tw-input:focus,
+.tw-select:focus,
+.tw-textarea:focus {
+    animation: input-focus 0.3s ease;
+}
+
+@keyframes input-focus {
+    0% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Alert animation */
+.tw-alert {
+    animation: slideInRight 0.4s ease-out;
+}
+
+/* Table row animation */
+.tw-table tbody tr {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Drawer dark mode toggle */
+.tw-drawer-dark-mode-toggle {
+    --tw-toggle-shift: 0;
+    background: linear-gradient(135deg, #fff7d9 0%, #ffe391 100%);
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    cursor: pointer;
+    padding: 0.9rem 1rem;
+    width: 100%;
+    border-radius: 1.25rem;
+    transition: transform 0.25s ease, box-shadow 0.35s ease, background 0.45s ease, border-color 0.35s ease;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+    color: #5f4300;
+    box-shadow: 0 14px 30px rgba(255, 183, 0, 0.18);
+}
+
+.tw-drawer-dark-mode-toggle::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.45) 50%, transparent 80%);
+    transform: translateX(-140%);
+    transition: transform 0.75s ease;
+}
+
+.tw-drawer-dark-mode-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(255, 183, 0, 0.25);
+}
+
+.tw-drawer-dark-mode-toggle:hover::before,
+.tw-drawer-dark-mode-toggle.is-animating::before {
+    transform: translateX(140%);
+}
+
+.tw-drawer-dark-mode-toggle:active {
+    transform: scale(0.985);
+}
+
+.tw-drawer-dark-mode-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--tw-green) 28%, transparent), 0 18px 34px rgba(255, 183, 0, 0.25);
+}
+
+.tw-drawer-dark-mode-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+}
+
+.tw-drawer-dark-mode-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+}
+
+.tw-drawer-dark-mode-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    opacity: 0.75;
+}
+
+.tw-drawer-dark-mode-state {
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease, color 0.3s ease;
+}
+
+.tw-drawer-dark-mode-toggle:hover .tw-drawer-dark-mode-state {
+    transform: translateX(-2px);
+}
+
+.tw-drawer-dark-mode-switch {
+    position: relative;
+    width: 4.9rem;
+    height: 2.7rem;
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.35), inset 0 -2px 6px rgba(95, 67, 0, 0.12);
+}
+
+.tw-drawer-dark-mode-switch-bg,
+.tw-drawer-dark-mode-stars,
+.tw-drawer-dark-mode-clouds,
+.tw-drawer-dark-mode-thumb {
+    position: absolute;
+}
+
+.tw-drawer-dark-mode-switch-bg {
+    inset: 0;
+    background: linear-gradient(180deg, #7ad7ff 0%, #cdefff 100%);
+    transition: background 0.45s ease;
+}
+
+.tw-drawer-dark-mode-stars {
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.tw-drawer-dark-mode-stars::before,
+.tw-drawer-dark-mode-stars::after {
+    content: '';
+    position: absolute;
+    width: 0.2rem;
+    height: 0.2rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0.8rem 0.2rem 0 rgba(255, 255, 255, 0.8), 1.7rem -0.1rem 0 rgba(255, 255, 255, 0.7), 2.4rem 0.45rem 0 rgba(255, 255, 255, 0.8), 3.3rem 0.1rem 0 rgba(255, 255, 255, 0.75);
+}
+
+.tw-drawer-dark-mode-stars::before {
+    top: 0.55rem;
+    left: 0.6rem;
+}
+
+.tw-drawer-dark-mode-stars::after {
+    top: 1.55rem;
+    left: 1.25rem;
+    width: 0.14rem;
+    height: 0.14rem;
+}
+
+.tw-drawer-dark-mode-clouds {
+    inset: auto 0 0 0;
+    height: 1.2rem;
+    opacity: 1;
+    transition: opacity 0.35s ease, transform 0.45s ease;
+}
+
+.tw-drawer-dark-mode-clouds::before,
+.tw-drawer-dark-mode-clouds::after {
+    content: '';
+    position: absolute;
+    bottom: -0.05rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 999px;
+}
+
+.tw-drawer-dark-mode-clouds::before {
+    left: 0.35rem;
+    width: 2.2rem;
+    height: 0.95rem;
+    box-shadow: 0.65rem -0.35rem 0 0.1rem rgba(255, 255, 255, 0.9), 1.45rem -0.15rem 0 0 rgba(255, 255, 255, 0.82);
+}
+
+.tw-drawer-dark-mode-clouds::after {
+    right: 0.2rem;
+    width: 1.85rem;
+    height: 0.8rem;
+    box-shadow: 0.35rem -0.28rem 0 0.08rem rgba(255, 255, 255, 0.9);
+}
+
+.tw-drawer-dark-mode-thumb {
+    top: 0.2rem;
+    left: 0.22rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f4a300;
+    background: radial-gradient(circle at 35% 35%, #fff7cc 0%, #ffd65a 58%, #ffbd2f 100%);
+    box-shadow: 0 8px 18px rgba(255, 170, 0, 0.35);
+    transform: translateX(var(--tw-toggle-shift));
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.tw-drawer-dark-mode-icon {
+    position: absolute;
+    transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tw-drawer-dark-mode-icon-sun {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.tw-drawer-dark-mode-icon-moon {
+    opacity: 0;
+    transform: scale(0.55) rotate(-120deg);
+}
+
+.tw-drawer-dark-mode-toggle.is-animating .tw-drawer-dark-mode-thumb {
+    animation: tw-toggle-bounce 0.45s ease;
+}
+
+body.dark-mode .tw-drawer-dark-mode-toggle {
+    --tw-toggle-shift: 2.2rem;
+    background: linear-gradient(135deg, #162033 0%, #253858 100%);
+    border-color: rgba(115, 150, 255, 0.22);
+    color: #e6ecff;
+    box-shadow: 0 16px 34px rgba(7, 12, 24, 0.38);
+}
+
+body.dark-mode .tw-drawer-dark-mode-switch {
+    border-color: rgba(138, 158, 255, 0.3);
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.08), inset 0 -2px 6px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .tw-drawer-dark-mode-switch-bg {
+    background: linear-gradient(180deg, #0d1830 0%, #20345d 100%);
+}
+
+body.dark-mode .tw-drawer-dark-mode-stars {
+    opacity: 1;
+}
+
+body.dark-mode .tw-drawer-dark-mode-clouds {
+    opacity: 0;
+    transform: translateY(0.35rem);
+}
+
+body.dark-mode .tw-drawer-dark-mode-thumb {
+    color: #eef3ff;
+    background: radial-gradient(circle at 35% 35%, #f6f8ff 0%, #d9e0ff 62%, #afbedf 100%);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.32);
+}
+
+body.dark-mode .tw-drawer-dark-mode-icon-sun {
+    opacity: 0;
+    transform: scale(0.55) rotate(120deg);
+}
+
+body.dark-mode .tw-drawer-dark-mode-icon-moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+@keyframes tw-toggle-bounce {
+    0% {
+        transform: translateX(var(--tw-toggle-shift)) scale(1);
+    }
+    50% {
+        transform: translateX(var(--tw-toggle-shift)) scale(1.08);
+    }
+    100% {
+        transform: translateX(var(--tw-toggle-shift)) scale(1);
+    }
+}
+
+/* Dark mode support (manual toggle) */
+body.dark-mode {
+    --tw-bg: #1a1a1a;
+    --tw-surface: #242424;
+    --tw-card-bg: #2d2d2d;
+    --tw-line: #404040;
+    --tw-muted: #a0a0a0;
+    --tw-text: #e0e0e0;
+    --tw-text-inv: #1a1a1a;
+    --tw-beige-pale: #2d2d2d;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

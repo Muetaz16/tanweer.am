@@ -25,8 +25,12 @@ class Post extends Model
         'excerpt',
         'body',
         'cover_image',
+        'content_blocks',
+        'author_name',
         'video_url',
         'youtube_video_id',
+        'external_url',
+        'investigation_persons',
         'is_published',
         'published_at',
     ];
@@ -34,6 +38,8 @@ class Post extends Model
     protected $casts = [
         'is_published' => 'boolean',
         'published_at' => 'datetime',
+        'content_blocks' => 'array',
+        'investigation_persons' => 'array',
     ];
 
     public static function types(): array
@@ -97,6 +103,17 @@ class Post extends Model
         return self::types()[$this->type] ?? $this->type;
     }
 
+    public static function linkify(?string $text): string
+    {
+        if (empty($text)) {
+            return '';
+        }
+        $text = e($text);
+        // Replace URLs with clickable links
+        $text = preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank" rel="noopener" style="color: var(--tw-green); text-decoration: underline; font-weight: 700;">$1</a>', $text);
+        return nl2br($text);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -137,10 +154,28 @@ class Post extends Model
         return $this->video_url && str_contains(strtolower($this->video_url), '/shorts/');
     }
 
+    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PostImage::class)->orderBy('sort_order', 'asc');
+    }
+
+    public function hasContentBlocks(): bool
+    {
+        return is_array($this->content_blocks) && count($this->content_blocks) > 0;
+    }
+
     public function thumbnailUrl(): ?string
     {
         if ($this->cover_image) {
             return asset('storage/' . $this->cover_image);
+        }
+
+        if ($this->relationLoaded('images') && $this->images->first()) {
+            return asset('storage/' . $this->images->first()->image_path);
+        }
+
+        if ($this->images()->exists()) {
+            return asset('storage/' . $this->images()->first()->image_path);
         }
 
         if ($this->youtube_video_id) {

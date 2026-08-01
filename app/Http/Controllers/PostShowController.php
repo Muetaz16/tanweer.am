@@ -10,6 +10,7 @@ class PostShowController extends Controller
     public function __invoke(string $slug): View
     {
         $post = Post::query()
+            ->with('images')
             ->published()
             ->where('slug', $slug)
             ->firstOrFail();

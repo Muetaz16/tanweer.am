@@ -78,6 +78,45 @@
             <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.016 10.016 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.085 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
             <a href="#" style="font-weight: 700; font-size: 0.9rem; display: flex; align-items: center;">نبض</a>
         </div>
+        
+        <!-- Dark Mode Toggle in Drawer -->
+        <button
+            type="button"
+            class="tw-drawer-dark-mode-toggle"
+            id="drawer-dark-mode-toggle"
+            aria-label="تبديل بين وضع النهار والليل"
+            aria-pressed="false"
+        >
+            <span class="tw-drawer-dark-mode-content">
+                <span class="tw-drawer-dark-mode-copy">
+                    <span class="tw-drawer-dark-mode-title">الوضع</span>
+                    <span class="tw-drawer-dark-mode-state" id="drawer-dark-mode-state">نهار</span>
+                </span>
+
+                <span class="tw-drawer-dark-mode-switch" aria-hidden="true">
+                    <span class="tw-drawer-dark-mode-switch-bg"></span>
+                    <span class="tw-drawer-dark-mode-stars"></span>
+                    <span class="tw-drawer-dark-mode-clouds"></span>
+                    <span class="tw-drawer-dark-mode-thumb">
+                        <svg id="drawer-dark-mode-icon-sun" class="tw-drawer-dark-mode-icon tw-drawer-dark-mode-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg id="drawer-dark-mode-icon-moon" class="tw-drawer-dark-mode-icon tw-drawer-dark-mode-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </span>
+                </span>
+            </span>
+        </button>
+        
         <div class="tw-drawer-footer-copy">
             <span>© {{ date('Y') }} تنوير — جميع الحقوق محفوظة</span>
         </div>

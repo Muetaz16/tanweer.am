@@ -6,15 +6,20 @@
     <div class="tw-wrap" style="padding-top: 2rem; padding-bottom: 3rem;">
         
         {{-- Featured Section --}}
-        @if ($featured->isNotEmpty())
-            <div class="tw-grid tw-grid-featured">
+        @php
+            $featuredNonReels = $featured->filter(function($post) {
+                return $post->type !== 'reels';
+            });
+        @endphp
+        @if ($featuredNonReels->isNotEmpty())
+            <div class="tw-grid tw-grid-featured tw-animate-fade-in">
                 <div class="tw-featured-main">
-                    @php $mainFeature = $featured->first(); @endphp
+                    @php $mainFeature = $featuredNonReels->first(); @endphp
                     <article class="tw-card tw-card-large">
                         <a href="{{ route('posts.show', $mainFeature->slug) }}">
                             <div class="tw-card-media">
                                 @if ($mainFeature->cover_image)
-                                    <img src="{{ asset('storage/'.$mainFeature->cover_image) }}" alt="">
+                                    <img src="{{ asset('storage/'.$mainFeature->cover_image) }}" alt="" loading="lazy">
                                 @endif
                             </div>
                             <div class="tw-card-overlay">
@@ -25,12 +30,12 @@
                     </article>
                 </div>
                 <div class="tw-featured-side">
-                    @foreach ($featured->skip(1)->take(3) as $post)
-                        <article class="tw-card tw-card-small">
+                    @foreach ($featuredNonReels->skip(1)->take(3) as $post)
+                        <article class="tw-card tw-card-small tw-animate-fade-in-delay-{{ $loop->iteration }}">
                             <a href="{{ route('posts.show', $post->slug) }}">
                                 <div class="tw-card-media">
                                     @if ($post->cover_image)
-                                        <img src="{{ asset('storage/'.$post->cover_image) }}" alt="">
+                                        <img src="{{ asset('storage/'.$post->cover_image) }}" alt="" loading="lazy">
                                     @endif
                                 </div>
                                 <div class="tw-card-body">
@@ -56,11 +61,11 @@
                         </div>
                         <div class="tw-grid tw-grid-2">
                             @foreach ($reportsPosts as $post)
-                                <article class="tw-card">
+                                <article class="tw-card tw-animate-fade-in-delay-{{ $loop->iteration }}">
                                     <a href="{{ route('posts.show', $post->slug) }}">
                                         <div class="tw-card-media" style="aspect-ratio: 4/3;">
                                             @if ($post->cover_image)
-                                                <img src="{{ asset('storage/'.$post->cover_image) }}" alt="">
+                                                <img src="{{ asset('storage/'.$post->cover_image) }}" alt="" loading="lazy">
                                             @endif
                                         </div>
                                         <div class="tw-card-body">
@@ -83,11 +88,11 @@
                             </div>
                             <div class="tw-grid tw-grid-1">
                                 @foreach ($investigationPosts as $post)
-                                    <article class="tw-card tw-card-horizontal">
+                                    <article class="tw-card tw-card-horizontal tw-animate-fade-in-delay-{{ $loop->iteration }}">
                                         <a href="{{ route('posts.show', $post->slug) }}">
                                             <div class="tw-card-media" style="aspect-ratio: 1/1; width: 100px;">
                                                 @if ($post->cover_image)
-                                                    <img src="{{ asset('storage/'.$post->cover_image) }}" alt="">
+                                                    <img src="{{ asset('storage/'.$post->cover_image) }}" alt="" loading="lazy">
                                                 @endif
                                             </div>
                                             <div class="tw-card-body">
@@ -108,11 +113,11 @@
                             </div>
                             <div class="tw-grid tw-grid-1">
                                 @foreach ($articlePosts as $post)
-                                    <article class="tw-card tw-card-horizontal">
+                                    <article class="tw-card tw-card-horizontal tw-animate-fade-in-delay-{{ $loop->iteration }}">
                                         <a href="{{ route('posts.show', $post->slug) }}">
                                             <div class="tw-card-media" style="aspect-ratio: 1/1; width: 100px;">
                                                 @if ($post->cover_image)
-                                                    <img src="{{ asset('storage/'.$post->cover_image) }}" alt="">
+                                                    <img src="{{ asset('storage/'.$post->cover_image) }}" alt="" loading="lazy">
                                                 @endif
                                             </div>
                                             <div class="tw-card-body">
@@ -152,11 +157,11 @@
                         </div>
                         <div class="tw-widget-videos">
                             @foreach ($reelsPosts as $post)
-                                <article class="tw-card">
-                                    <a href="{{ route('posts.show', $post->slug) }}">
+                                <article class="tw-card tw-animate-fade-in-delay-{{ $loop->iteration }}">
+                                    <a href="{{ route('category.show', 'reels') }}">
                                         <div class="tw-card-media" style="aspect-ratio: 16/9;">
                                             @if ($post->cover_image)
-                                                <img src="{{ asset('storage/'.$post->cover_image) }}" alt="">
+                                                <img src="{{ asset('storage/'.$post->cover_image) }}" alt="" loading="lazy">
                                             @endif
                                             <div class="tw-play-icon">▶</div>
                                         </div>
