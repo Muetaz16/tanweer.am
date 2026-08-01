@@ -29,7 +29,12 @@
             <tbody>
                 @forelse ($posts as $post)
                     <tr>
-                        <td>{{ $post->title }}</td>
+                        <td>
+                            {{ $post->title }}
+                            @if($post->images->count() > 0)
+                                <span class="tw-badge" style="margin-right: 0.35rem; font-size: 0.7rem; background: var(--tw-green-pale); color: var(--tw-green-dark);">📷 {{ $post->images->count() }}</span>
+                            @endif
+                        </td>
                         <td><span class="tw-badge">{{ $post->typeLabel() }}</span></td>
                         <td>
                             @if ($post->is_published)

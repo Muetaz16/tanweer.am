@@ -19,6 +19,7 @@ class CategoryController extends Controller
         $categoryName = $types[$type];
 
         $posts = Post::query()
+            ->with('images')
             ->published()
             ->where('type', $type)
             ->latest('published_at')

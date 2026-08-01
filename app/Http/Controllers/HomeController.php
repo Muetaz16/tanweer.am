@@ -11,17 +11,18 @@ class HomeController extends Controller
     {
         // 4 recent posts: 1 main + 3 side
         $featured = Post::query()
+            ->with('images')
             ->published()
             ->latest('published_at')
             ->limit(4)
             ->get();
 
         // Specific category queries
-        $reportsPosts = Post::query()->published()->where('type', Post::TYPE_REPORTS)->latest('published_at')->limit(6)->get();
-        $investigationPosts = Post::query()->published()->where('type', Post::TYPE_INVESTIGATION)->latest('published_at')->limit(4)->get();
-        $articlePosts = Post::query()->published()->where('type', Post::TYPE_ARTICLE)->latest('published_at')->limit(4)->get();
-        $reelsPosts = Post::query()->published()->where('type', Post::TYPE_REELS)->latest('published_at')->limit(4)->get();
-        $latestNews = Post::query()->published()->latest('published_at')->limit(10)->get();
+        $reportsPosts = Post::query()->with('images')->published()->where('type', Post::TYPE_REPORTS)->latest('published_at')->limit(6)->get();
+        $investigationPosts = Post::query()->with('images')->published()->where('type', Post::TYPE_INVESTIGATION)->latest('published_at')->limit(4)->get();
+        $articlePosts = Post::query()->with('images')->published()->where('type', Post::TYPE_ARTICLE)->latest('published_at')->limit(4)->get();
+        $reelsPosts = Post::query()->with('images')->published()->where('type', Post::TYPE_REELS)->latest('published_at')->limit(4)->get();
+        $latestNews = Post::query()->with('images')->published()->latest('published_at')->limit(10)->get();
 
         return view('home', compact(
             'featured',
